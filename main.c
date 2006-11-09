@@ -46,7 +46,7 @@ char *argv[];
 {
 	int i, hard;
 	char buf[BUFSIZ];
-	char *malloc(), *getenv(), *getlogin(), *ptr=0;
+	char *getenv(), *getlogin(), *ptr=0;
 	struct passwd *pwe,*getpwuid();
 	extern char *optarg;
 	extern int optind, opterr;

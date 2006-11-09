@@ -209,11 +209,11 @@ char	*fname;
 	unsigned int thesum, asum;
 	struct sphere *sp,*splast;
 	Saved_Level * storage;
-	char buf[1024], *tmp="/tmp/UtmpXXXXXX", *mkstemp(); 
+	char buf[1024], *tmp="/tmp/UtmpXXXXXX";
     	int fd;
 
 	if (compress) {
-		if ((tempfilename = mkstemp(tmp)) == NULL) {
+		if (mkstemp(tmp) == -1) {
 			fprintf(stderr,"Can't create temp file to restore game\n");
 			perror("mkstemp");
 			nosignal=0;
@@ -222,6 +222,7 @@ char	*fname;
 			died(-265);
 			return;
 		}
+		tempfilename = tmp;
 		sprintf(buf, "%s < %s > %s 2>/dev/null", 
 			UNCOMPRESS, fname, tempfilename);
 		printf(" Uncompressing...");fflush(stdout);

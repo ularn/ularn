@@ -28,6 +28,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #ifdef USG
 #  include <strings.h>
 #else

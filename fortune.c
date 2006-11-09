@@ -16,7 +16,6 @@ char *file;
 	int lines,tmp;
 	struct stat stat;
 	int retval;
-	char *malloc();
 
 	if (fortune_fd==0) {
 		/* open the file */

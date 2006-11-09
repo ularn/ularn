@@ -533,7 +533,7 @@ init_term ()
 {
 	char termbuf[1024];
 	char *pc, *capptr = cap+10;
-	char *malloc(), *tgetstr(), *term, *getenv();
+	char *tgetstr(), *term, *getenv();
 
 	switch (tgetent(termbuf, term = getenv("TERM"))) {
 	case -1:
