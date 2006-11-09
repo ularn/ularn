@@ -88,7 +88,7 @@ int openhelp(void);
 int getcharacter(void);
 int newgame(void);
 /*VARARGS*/
-int lprintf();
+int lprintf(va_list, ...);
 int lprint(long);
 int lwrite(char *, int);
 long lgetc1(void);
