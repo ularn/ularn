@@ -64,7 +64,7 @@ yylex ()
 #ifdef USG
 			pgrp = getpgrp();
 #else
-			pgrp = getpgrp(getpid());
+			pgrp = getpgrp();
 #endif /* USG */
 			
 			resetscroll();
@@ -75,7 +75,7 @@ yylex ()
 				settty();
 				setuid(geteuid());
 				setgid(getegid());
-				setpgrp(getpid(), pgrp);
+				setpgrp();
 				if ((sh = getenv("SHELL")) != (char *)NULL) {
 					execl(sh, sh, (char *)0);	
 					if (!strcmp(sh, "/bin/sh")) {
