@@ -6,14 +6,7 @@
 #include "monst.h"
 #include "extern.h"
 
-#ifdef CYGWIN
 #include <errno.h>
-#define SYSERRLISTDEFINED
-#endif
-
-#ifndef SYSERRLISTDEFINED
-extern char *sys_errlist[];
-#endif
 
 extern int errno;
 
