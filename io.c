@@ -101,16 +101,14 @@ newgame ()
  */
 /*VARARGS*/
 
-int lprintf(va_list ap, ...)
+int lprintf(char *fmt, ...)
 {
-	char *fmt;
+    va_list ap;
 	char *outb,*tmpb;
 	long wide,left,cont,n;		/* data for lprintf	*/
 	char db[12];			/* %d buffer in lprintf	*/
 
-	va_start(ap, ap);	/* initialize the var args pointer */
-
-	fmt = (char *)va_arg(ap, char *);	/* pointer to format string */
+	va_start(ap, fmt);	/* initialize the var args pointer */
 
 	if (lpnt >= lpend) lflush();
 	outb = lpnt;
