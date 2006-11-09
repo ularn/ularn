@@ -19,7 +19,6 @@
  *	FILE INPUT ROUTINES
  *
  *	long lgetc()			read one character from input buffer
- *	long lrint()			read one integer from input buffer
  *	lrfill(address,number)		put input bytes into a buffer
  *	char *lgetw()			get a whitespace ended word from input
  *	char *lgetl()			get a \n or EOF ended line from input
@@ -301,30 +300,6 @@ long lgetc1()
 	ipoint=1;
 	iepoint=i;
 	return(*inbuffer);
-}
-
-/*
- *	long lrint()			Read one integer from input buffer
- *
- *		+---------+---------+---------+---------+
- *		|  high   |	    |	      |   low   |
- *		|  order  |	    |	      |  order	|
- *		|   byte  |	    |	      |	  byte	|
- *		+---------+---------+---------+---------+
- *	        31  ---  24 23 --- 16 15 ---  8 7  ---   0
- *
- *	The save order is low order first, to high order (4 bytes total)
- *	Returns the int read
- */
-long lrint()
-{
-	long i;
-
-	i  = 255 & lgetc();
-	i |= (255 & lgetc()) << 8;
-	i |= (255 & lgetc()) << 16;
-	i |= (255 & lgetc()) << 24;
-	return(i);
 }
 
 /*
