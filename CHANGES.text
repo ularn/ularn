@@ -1,0 +1,81 @@
+===============================================================================
+Patchlevel 4: November 16th, 2001
+===============================================================================
+
+Features added:
+---------------
+Now compiles and runs under cygwin environment
+
+Bugs fixed:
+-----------
+Configure script now less lame, recognizes cygwin environment
+
+
+===============================================================================
+Patchlevel 3: March 21st, 2001
+===============================================================================
+
+Features added:
+---------------
+``You read a scroll of foo.'' message on reading scrolls; similarly potions.
+Potions of instant healing are now a bit better.
+
+
+Bugs fixed:
+-----------
+Can no longer wield something you're wearing.
+Fixed broken timewarp code.  Can't now warp by 0 mobuls.
+Usage messages correctly printed.
+Killing a monster no longer causes you to see the squares you'd see if
+  you were standing where it was.
+Fixed spell descriptions to be shorter.
+Pits and chests can't cost you more hitpoints than you have.
+Fixed the rest of the broken macros in header.h.
+No longer ``You drop a spear (weapon in hand)''; just ``You drop a spear''.
+Praying can't cause weapon/armour evaporation.
+Closing doors no longer causes the player to move back to the square
+  they occupied previous to moving onto the door.
+
+
+===============================================================================
+Patchlevel 2: March 20th, 2001
+===============================================================================
+
+Bugs fixed:
+-----------
+``mkdir $(BINDIR)'' in Makefile changed to ``mkdir -p $(BINDIR)''
+Save files now compatible with Patchlevel 0.
+
+
+===============================================================================
+Patchlevel 1: March 19th, 2001
+===============================================================================
+
+Features added:
+---------------
+Ability to unwield weapon (w -)
+Helpful messages when wielding/wearing
+Improved spellcasting dialogue
+Implemented Vorpal Blade (except for when whacking monster several times)
+
+
+Bugs fixed:
+-----------
+Copyright message now has appropriate newlines.
+Weapons/armour only glow if they're actually enchanted.
+No longer says ``You have found some gold\n it is worth foo''.
+Display of known scrolls and potions now correcty paginated.
+Fixed ``You went backward in time by 0 mobuls''.
+Copied nethack's magic mapping message.
+Messages proofread and de-dorked.  Pluralization done.
+Fixed (some of) broken macros in header.h
+
+
+Other changes made:
+-------------------
+Changed to sybolic constants for scroll and potion names, except in store.c
+Removed the place where opening certain doors makes you lose a level
+
+===============================================================================
+End
+===============================================================================

@@ -1,0 +1,137 @@
+5    Welcome to the game of Ularn.  At this moment, you face a great problem.
+Your daughter has contracted a strange disease and none of your home remedies
+seems to have any effect.  You sense that she is in mortal danger and you must
+try to save her.  Time ago you heard of a land of great danger and opportunity.
+Perhaps here is the solution you need.
+
+    It has been said that there once was a great magician who called himself
+Polinneaus.  Many years ago, after having many miraculous successes, Polinneaus
+retired to the caverns of Ularn, where he devoted most of his time to the
+creation of magic.   Rumors have it that one day Polinneaus set out to dispel
+an attacking army in a forest some distance to the north.  It is believed that
+there he met his demise.
+
+    The caverns of Ularn, it is thought, must be magnificent in design
+and contain much magic and treasure.  One option you have is to undertake a
+journey into these caverns.
+
+
+    Good Luck!  (You're going to need it.)
+
+
+
+
+		    ^[[7mHelp File for The Caverns of Ularn^[[m
+
+h  move to the left	   H  run left			.  stay here
+j  move down		   J  run down			Z  teleport yourself
+k  move up		   K  run up			c  cast a spell
+l  move to the right	   L  run right			r  read a scroll
+y  move northwest	   Y  run northwest		q  quaff a potion
+u  move northeast	   U  run northeast		W  wear armor
+b  move southwest	   B  run southwest		T  take off armor
+n  move southeast	   N  run southeast		w  wield a weapon
+^  identify a trap	   g  give present pack weight	P  give tax status
+d  drop an item	           i  inventory your pockets	Q  quit the game
+v  print program version   S  save the game		D  list all items found
+?  this help screen	   C  close an open door        e  eat something
+
+Ularn -s            list the scoreboard
+Ularn -i            list scores with inventories
+Ularn -n            suppress welcome message when beginning a game
+Ularn -r            restore checkpointed game
+Ularn -<number>     specify difficulty level
+Ularn -o <optsfile> specify the .Ularnopts file to be used
+Ularn -c            create new scoreboard (requires wizard password)
+Ularn -h            print out all the command line options
+			    ^[[7mSpecial Notes^[[m
+
+When dropping gold, if you type '*' as your amount, all your gold gets dropped.
+In general, typing in '*' means all of what your interested in.  This is true
+when visiting the bank, or when contributing at altars.
+
+When in the store, trading post, school, or home, an ^[[7m<escape>^[[m will get you out.
+
+When casting a spell, if you need a list of spells you can cast, type '^[[7mD^[[m' as
+the first letter of your spell.  The available list of spells will be shown,
+after which you may enter the spell code.  This only works on the 1st letter
+of the spell you are casting.  You may also type '^[[7mD^[[m' at any time - this will
+show all the spells you know, as well as all the potions and scrolls you have
+encountered and identified so far.
+
+
+
+
+
+
+
+
+
+		    ^[[7mHow to use the .Ularnopts option file^[[m
+
+The file ".Ularnopts", if used, should be in your home directory (see -o).
+A sequence of words terminated by whitespace is used to specify options.
+	Word                            Meaning
+    compress                      compress save files (usually on by default)
+    enable-checkpointing          turn on periodic checkpointing
+    no-introduction		  do not display intro message
+    no-beep			  disable beeping of the terminal
+    no-bold                       turn off highliting
+    no-compress                   don't compress save files
+    no-nap                        eliminate all delays when playing game
+    no-mail                       don't send mail after winning game
+    male			  choose your sex to be a man
+    female			  choose your sex to be a woman
+    name: "your name"		  choose your playing name
+    savefile: savefilename        full pathname of savefile
+    character: character	  choose your character
+    monster: "monstname"          choose a new name for the monster
+Your name and monster names must be enclosed in double quotation marks and may
+be up to 34 characters long.  Longer names are truncated.  Anything enclosed in
+quotation marks is considered one word, and must be separated from other words
+by whitespace. A space must follow a colon, for example: "character: klingon".
+	             ^[[7mExample .Ularnopts file^[[m
+
+character: klingon
+enable-checkpointing
+no-introduction
+no-beep
+no-bold
+name: "Satyr, the Ularn God"
+savefile: /u/philc/savefiles/Usave
+monster: "Hippy"				# rename Hobgoblin to Hippy
+monster: "Jackass"				# rename Jackal to Jackass
+monster: "loopy dude"				# rename lemming to loopy dude
+monster: "Aggravation"				# rename Ant to Aggravation
+monster: "Kop"
+monster: "Lucky fool"
+monster: "Dipshit"
+monster: "bore"
+monster: "Creep"
+monster: "gack"
+
+
+
+
+	       ^[[7mExplanation of the Ularn scoreboard facility^[[m
+
+    Ularn supports TWO scoreboards, one for winners, and one for deceased
+characters.  Each player is allowed one slot on each scoreboard, if the score 
+is in the top ten for that scoreboard.  This design helps ensure that frequent 
+players of Ularn do not hog the scoreboard and gives more players a chance 
+for glory.  Level of difficulty is also noted on the scoreboards and this 
+takes precedence over score for determining what entry is on the scoreboard.  
+For example: if "Satyr, the Ularn God" has a score of 128003 on the scoreboard 
+at diff 0, then his game at diff 1 and a score of 4112 would replace his 
+previous entry on the scoreboard.  Note that when a player dies, his inventory 
+is stored in the scoreboard so that everyone can see what items the player had
+at the time of his death.
+
+
+
+
+
+
+         Ularn was written in 1987 by Phil Cordier at UC Santa Cruz.
+                    It was updated in 2001 by Josh Brandt
+         Contact him at mute@gweep.net for info regarding the game. 

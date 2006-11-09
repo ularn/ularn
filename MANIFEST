@@ -1,0 +1,50 @@
+After all the Ularn kits are run you should have the following files:
+
+Filename		Description
+--------		-----------
+Configure		configuration script
+INSTALL			installation instructions
+Imakefile.SH		Not used, here for reference
+MANIFEST		this list
+Makefile.u.SH
+README			it's the readme
+TODO			things you (yes, you!) can help with!
+CHANGES.text		changes made most recently.
+GPL			Gnu Public License
+Ufortune		data file
+Uhelp			data file
+Ularnopts		data file
+Umaps			data file
+action.c
+bill.c
+config.h.SH
+create.c
+data.c
+diag.c
+display.c
+extern.h
+fortune.c
+header.h
+help.c
+io.c
+itm.h
+main.c
+monst.h
+monster.c
+moreobj.c
+movem.c
+nap.c
+object.c
+patchlevel.h
+player.c
+player.h
+regen.c
+savelev.c
+scores.c
+show.c
+signal.c
+sphere.c
+sphere.h
+store.c
+tok.c
+tty.c

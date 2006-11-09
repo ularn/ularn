@@ -1,0 +1,25 @@
+
+To do:
+
+BUGS:
+- the @ sign and blindness still doesn't quite work-- when blind and picking
+  thing up, the thing doesn't disappear...
+
+- "press return to continue" when at home doesn't do anything
+
+- compressing saved-game files seems not to work. [This now sort of works]
+
+- configure script thinks all sorts of things are ksh
+
+THINGS I'D LIKE:
+
+- blacksmith on top floor to fix negative-bonus weaponry (at some percentage
+  of cost of actual weapon. Mostly so I can beat up rust monsters with
+  the Flailing Hammer or Slayer and get it fixed afterward...)
+
+- having the bank give interest would be cool.
+
+- an @ sign where the player is, for lame terminals without decent
+  cursors (like TeraTerm, or anything that blinks.)
+ - still kind of buggy.
+
