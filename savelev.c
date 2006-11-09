@@ -448,7 +448,7 @@ long num;
 	ncalls++;
 	if ((nwrote = write(fd, buf, num)) == -1) {
 		fprintf(stderr, "Error writing to save file\n");
-		fprintf(stderr, "errno = %d\t[%s]\n",errno,sys_errlist[errno]);
+		fprintf(stderr, "errno = %d\t[%s]\n", errno, strerror(errno));
 		fprintf(stderr, "    Wrote %d bytes so far\n", w);
 		fprintf(stderr, "        Call: %d\n", ncalls);
 		abort();
@@ -479,7 +479,7 @@ long num;
 	ncalls++;
 	if ((nread = read(fd, buf, num)) == -1) {
 		fprintf(stderr, "Error reading from save file\n");
-		fprintf(stderr, "errno = %d\t[%s]\n",errno,sys_errlist[errno]);
+		fprintf(stderr, "errno = %d\t[%s]\n", errno, strerror(errno));
 		fprintf(stderr, "    Read %d bytes so far\n", w);
 		fprintf(stderr, "        Call: %d\n", ncalls);
 		perror("read");
