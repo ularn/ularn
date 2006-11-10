@@ -7,7 +7,7 @@ BUGS:
 
 - "press return to continue" when at home doesn't do anything
 
-- compressing saved-game files seems not to work. [This now sort of works]
+- Use zlib to compress save files
 
 - configure script thinks all sorts of things are ksh
 

@@ -11,9 +11,7 @@ with their compiler anyway. You're probably better off with gcc. I may work
 on this in the future, if people ask, but I probably won't bother.
 
 Anyway, mail me patches and things if you have them. Fix things in the TODO
-and I'll be really happy. There are no major problems right now, except that
-using compressed savefiles might not work everywhere. Try it out _before_
-you get to 35th level and have to reboot or go to bed or something...
+and I'll be really happy.
 
 Ularn is distributed under the Gnu Public License. This is because the
 original author included Gnu getopt in main.c. I have included a copy of the

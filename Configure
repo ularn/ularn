@@ -97,8 +97,6 @@ mailx=''
 mail=''
 cpp=''
 perl=''
-compress=''
-uncompress=''
 imake=''
 xmkmf=''
 bindir=''
@@ -111,8 +109,6 @@ d_random=''
 defcomp=''
 imaketmpl=''
 libdir=''
-mycompress=''
-myuncompress=''
 CONFIG=''
 : set package name
 package=Ularn
@@ -331,8 +327,6 @@ grep
 trylist="
 xmkmf
 imake
-compress
-uncompress
 test
 Mcc
 cpp
@@ -1202,40 +1196,6 @@ else
     d_voidsig="$undef"
 fi
 
-:
-if $test $cygwin = "define" ; then
-  echo "cygwin doesn't get to compress savegame files."
-  compress=''
-  defcomp="$undef"
-else
-case "$compress" in
-	'xxx') compress=''
-	;;
-	*) 
-
-	echo " "
-	echo "I see you have the 'compress' program."
-
-	dflt="y"
-	rp="Would you like to have save files compressed by default? [$dflt]"
-	$echo $n "$rp $c"
-	. myread
-
-	case "$ans" in
-		n*) defcomp="$undef"
-		echo " "
-		echo "Compression of save files can be enabled by placing"
-		echo "the keyword \"compress\" in your .${package}opts file."
-		echo " "
-		;;
-		*)  defcomp="$define"
-		;;
-	esac
-	;;
-esac
-
-fi
-
 : determine where public executables go
 case "$bindir" in
 '')
@@ -1294,19 +1254,6 @@ while $test "$cont" ; do
     cont=''
 done
 :
-case "$compress" in
-    '') mycompress="/usr/ucb/compress -c"
-	;;
-    *)  mycompress="$compress -c"
-   		;;
-esac
-:
-case "$uncompress" in
-    '') myuncompress="/usr/ucb/uncompress -c"
-    ;;
-    *)  myuncompress="$uncompress -c"
-    ;;
-esac
 : where do we get termlib routines from
 echo " "
 ans=`loc libcurses.a x $libpth`
@@ -1459,8 +1406,6 @@ mailx='$mailx'
 mail='$mail'
 cpp='$cpp'
 perl='$perl'
-compress='$compress'
-uncompress='$uncompress'
 imake='$imake'
 xmkmf='$xmkmf'
 bindir='$bindir'
@@ -1473,8 +1418,6 @@ d_random='$d_random'
 defcomp='$defcomp'
 imaketmpl='$imaketmpl'
 libdir='$libdir'
-mycompress='$mycompress'
-myuncompress='$myuncompress'
 CONFIG=true
 EOT
 

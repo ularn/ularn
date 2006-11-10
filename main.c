@@ -402,14 +402,7 @@ parse ()
 			case 'S':	clear();
 					lprcat("Saving . . .");
 					lflush();
-					if (savegame(savefilename) == -1 && compress) {
-				lprcat("\nCompression of your savefile failed.\n");
-				lprcat("Do you want to try to save without compression? ");
-						if ((i = getyn()) == 'y' || i == 'Y') {
-							compress=0;
-							savegame(savefilename);
-						}
-					}
+					savegame(savefilename);
 					wizard=1;		/* so not show scores */
 					died(-257);
 					/* NOTREACHED */

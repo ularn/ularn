@@ -125,28 +125,10 @@ sed <<!GROK!THIS! >config.h -e 's!^#undef!/\*#undef!'
  */
 #$d_random  RANDOM    /**/
 
-/* DEF_COMPRESS:
- *  This symbol,if defined, indicates that the save files should
- *  be compressed by default.
- */
-#$defcomp  DEF_COMPRESS    /**/
-
 /* LIBDIR:
  *     This symbol indicates where the data files will reside.
  */
 #define LIBDIR "$libdir"          /**/
-
-/* COMPRESS
- *  This symbol contains the command to do compression from stdin
- *  to stdout.
- */
-#define  COMPRESS  "$mycompress"
-
-/* UNCOMPRESS
- *  This symbol contains the command to do uncompression from stdin
- *  to stdout.
- */
-#define  UNCOMPRESS  "$myuncompress"
 
 /* LINUX 
  *   we're compiling on linux.

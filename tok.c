@@ -262,8 +262,6 @@ readopts ()
 				mail=0;
 			else if (strcmp(str,"no-nap") == 0)
 				nonap=1;
-			else if (strcmp(str,"no-compress") == 0)
-				compress=0;
 			break;
 
 		case 'c':
@@ -293,8 +291,7 @@ readopts ()
 					char_picked = 'g';
 				else if (!strcmp(char_class, "rambo"))
 					char_picked = 'h';
-			} else if(!strcmp(str, "compress"))
-				compress = 1;
+			}
 			break;
 
 		case 's':

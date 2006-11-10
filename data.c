@@ -121,12 +121,6 @@ short iarg[MAXX][MAXY];		/*	arg for the item array	*/
 short lastnum=0;		/* the number of the monster last hitting player, or */
 						/* reason why dead */
 
-char compress
-#ifdef DEF_COMPRESS
-	= 1;
-#else
-	= 0;
-#endif
 char item[MAXX][MAXY];		/*	objects in maze if any	*/
 char know[MAXX][MAXY];		/*	1 or 0 if here before	*/
 /*char mitem[MAXX][MAXY];		/*	monster item array 	*/

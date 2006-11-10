@@ -5,7 +5,6 @@ enable-checkpointing
 #male
 female
 #character: klingon
-compress
 name: Satyr
 monster: "Aardvark"
 monster: "Bitch"

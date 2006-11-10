@@ -72,12 +72,10 @@ encountered and identified so far.
 The file ".Ularnopts", if used, should be in your home directory (see -o).
 A sequence of words terminated by whitespace is used to specify options.
 	Word                            Meaning
-    compress                      compress save files (usually on by default)
     enable-checkpointing          turn on periodic checkpointing
     no-introduction		  do not display intro message
     no-beep			  disable beeping of the terminal
     no-bold                       turn off highliting
-    no-compress                   don't compress save files
     no-nap                        eliminate all delays when playing game
     no-mail                       don't send mail after winning game
     male			  choose your sex to be a man

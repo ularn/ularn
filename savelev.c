@@ -103,24 +103,12 @@ char	*fname;
 	savelevel();
 	ointerest();
 
-	if (compress) {
-		sprintf(buf, "%s > %s 2>/dev/null", COMPRESS, fname);
-		if ((fp = popen(buf, "w")) == (FILE *)NULL) {
-			fprintf(stderr,"Can't open pipe to <%s> to save game\n", 
-				COMPRESS);
-			perror("popen");
-			nosignal = 0;
-			if (do_fork) exit(1); else return(-1);
-		}
-		fd = fileno(fp);
-	} else {
-		if ((fd = creat(fname, 0600)) < 0) {
-			fprintf(stderr,"Can't open file <%s> to save game\n", 
-				fname);
-			perror("open of savefile");
-			nosignal = 0;
-			if (do_fork) exit(1); else return(-1);
-		}
+	if ((fd = creat(fname, 0600)) < 0) {
+		fprintf(stderr,"Can't open file <%s> to save game\n", 
+			fname);
+		perror("open of savefile");
+		nosignal = 0;
+		if (do_fork) exit(1); else return(-1);
 	}
 
 	set_score_output();
@@ -183,16 +171,6 @@ char	*fname;
 	bwrite(fd,(char *)&FileSum, sizeof(FileSum));
 	close(fd);
 
-	if (compress) {
-		if (pclose(fp) != 0) {	/* if compress failed */
-			unlink(fname);
-			nosignal = 0;
-			if (do_fork)
-				exit(1);
-			else
-				return (-1);
-		}
-	}
 	nosignal = 0;
 	if (do_fork)
 		exit(0);
@@ -212,46 +190,13 @@ char	*fname;
 	char buf[1024], *tmp="/tmp/UtmpXXXXXX";
     	int fd;
 
-	if (compress) {
-		if (mkstemp(tmp) == -1) {
-			fprintf(stderr,"Can't create temp file to restore game\n");
-			perror("mkstemp");
-			nosignal=0;
-			sleep(4);
-			c[GOLD] = c[BANKACCOUNT] = 0;
-			died(-265);
-			return;
-		}
-		tempfilename = tmp;
-		sprintf(buf, "%s < %s > %s 2>/dev/null", 
-			UNCOMPRESS, fname, tempfilename);
-		printf(" Uncompressing...");fflush(stdout);
-		if (system(buf) != 0) {
-			fprintf(stderr,"\"%s\" failed\n",buf);
-			perror("system");
-			sleep(4);
-			c[GOLD] = c[BANKACCOUNT] = 0;
-			died(-265);
-			unlink(tempfilename);
-			return;
-		}
-		if ((fd = open(tempfilename, O_RDONLY)) < 0) {
-			fprintf(stderr,"Can't open temp file to restore game\n");
-			perror("open");
-			sleep(4);
-			c[GOLD] = c[BANKACCOUNT] = 0;
-			died(-265);
-			return;
-		}
-	} else {
-		if ((fd = open(fname, O_RDONLY)) <= 0) {
-			fprintf(stderr,"Can't open file <%s> to restore game\n", 
-				fname);
-			sleep(4);
-			c[GOLD] = c[BANKACCOUNT] = 0;
-			died(-265);
-			return;
-		}
+	if ((fd = open(fname, O_RDONLY)) <= 0) {
+		fprintf(stderr,"Can't open file <%s> to restore game\n", 
+			fname);
+		sleep(4);
+		c[GOLD] = c[BANKACCOUNT] = 0;
+		died(-265);
+		return;
 	}
 	printf(" Reading data...");fflush(stdout);
 	init_cells();
@@ -329,9 +274,6 @@ char	*fname;
 		fsorry();
 
 	close(fd);
-	if (compress)
-		if (unlink(tempfilename) == -1)
-			fcheat();
 
 	oldx = oldy = 0;
 	if (strcmp(fname, ckpfile) == 0) {

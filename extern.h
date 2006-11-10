@@ -733,7 +733,7 @@ extern char potprob[], predostuff, scprob[], spelknow[], do_fork, sex;
 extern char spelweird[MAXMONST+8][SPNUM], wizard;
 extern char diroffx[],diroffy[],hitflag,hit2flag,hit3flag;
 extern char rmst, lasthx,lasthy,lastpx,lastpy;
-extern char ramboflag, compress;
+extern char ramboflag;
 
 extern short hitp[MAXX][MAXY], ivenarg[], screen[MAXX][MAXY];
 extern short iarg[MAXX][MAXY], lastnum;	/* must be short for gold piles */
