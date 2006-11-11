@@ -89,7 +89,6 @@ int getcharacter(void);
 int newgame(void);
 /*VARARGS*/
 int lprintf(char *, ...);
-int lprint(long);
 int lwrite(char *, int);
 long lgetc1(void);
 int lrfill(char *, int);
@@ -441,7 +440,6 @@ int getcharacter();
 int newgame();
 /*VARARGS*/
 int lprintf();
-int lprint();
 int lwrite();
 long lgetc1();
 int lrfill();

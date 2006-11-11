@@ -8,7 +8,6 @@
  *	FILE OUTPUT ROUTINES
  *
  *	lprintf(format,args . . .)	printf to the output buffer
- *	lprint(integer)			send binary integer to output buffer
  *	lwrite(buf,len)			write a buffer to the output buffer
  *	lprcat(str)			sent string to output buffer
  *
@@ -205,35 +204,6 @@ int lprintf(char *fmt, ...)
 		fmt++;
 	}
 	va_end(ap);
-}
-
-/*
- *	lprint(long-integer)
- *		long integer;
- *
- *		send binary integer to output buffer
- *
- *	+---------+---------+---------+---------+
- *	|   high  |	    |	      |	  low	|
- *	|  order  |	    |	      |  order	|
- *	|   byte  |	    |	      |	  byte	|
- *	+---------+---------+---------+---------+
- *	 31 --- 24 23 --- 16 15 ---  8 7  ---  0
- *
- *	The save order is low order first, to high order (4 bytes total)
- *		and is written to be system independent.
- *	No checking for output buffer overflow is done, but flushes if needed!
- *	Returns nothing of value.
- */
-lprint (x)
-long x;
-{
-	if (lpnt >= lpend)
-		lflush();
-	*lpnt++ =  255 & x;
-	*lpnt++ =  255 & (x>>8);
-	*lpnt++ =  255 & (x>>16);
-	*lpnt++ =  255 & (x>>24);
 }
 
 /*
