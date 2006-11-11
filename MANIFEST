@@ -4,13 +4,12 @@ Filename		Description
 --------		-----------
 Configure		configuration script
 INSTALL			installation instructions
-Imakefile.SH		Not used, here for reference
 MANIFEST		this list
 Makefile.u.SH
 README			it's the readme
 TODO			things you (yes, you!) can help with!
 CHANGES.text		changes made most recently.
-GPL			Gnu Public License
+LICENSE			Gnu Public License
 Ufortune		data file
 Uhelp			data file
 Ularnopts		data file
