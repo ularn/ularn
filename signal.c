@@ -13,7 +13,7 @@ s2choose()	/* text to be displayed if ^C during intro screen */
 	lflush(); 
 }
 
-SIGTYPE
+RETSIGTYPE
 cntlc(int x)	/* what to do for an interrupt */
 {
 	if (nosignal)  {
@@ -36,7 +36,7 @@ cntlc(int x)	/* what to do for an interrupt */
 /*
  *	subroutine to save the game if a hangup signal
  */
-SIGTYPE
+RETSIGTYPE
 sgam(int x)
 {
  	if (ckpflag) {
@@ -50,7 +50,7 @@ sgam(int x)
 }
 
 #ifdef SIGTSTP
-SIGTYPE
+RETSIGTYPE
 tstop(sig)
 int sig;
 {
@@ -86,12 +86,12 @@ int sig;
 **	sigsave called before a shell escape
 **	sigreset called after a shell escape
 */
-static SIGTYPE 	(*intsave)(),
+static RETSIGTYPE 	(*intsave)(),
 		(*quitsave)();
 void
 sigsetup()
 {
-	SIGTYPE tstop();
+	RETSIGTYPE tstop();
 	signal(SIGHUP,  sgam);
 	signal(SIGINT,  cntlc); 
 	signal(SIGQUIT, cntlc); 		
@@ -191,7 +191,7 @@ static char *signame[NSIG] = {
 /*
  *	routine to process a fatal error signal
  */
-SIGTYPE
+RETSIGTYPE
 sigpanic(sig)
 int sig;
 {

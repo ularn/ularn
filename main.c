@@ -629,7 +629,7 @@ parse2 ()
 	regen();
 }
 
-#ifndef GETOPT
+#ifndef HAVE_GETOPT
 
 /* Getopt for GNU.
    Copyright (C) 1987, 1989, 1990 Free Software Foundation, Inc.
@@ -1117,4 +1117,4 @@ getopt (argc, argv, optstring)
     return c;
   }
 }
-#endif /* GETOPT */
+#endif /* HAVE_GETOPT */

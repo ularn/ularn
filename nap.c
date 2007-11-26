@@ -1,6 +1,8 @@
 /* nap.c */
 #include "header.h"
 
+#include <sys/time.h>
+
 int nonap = 0;
 
 /*
@@ -17,17 +19,17 @@ int x;
 	else napms(x);
 }
 
-#ifdef ITIMER
+#ifdef HAVE_SETITIMER
 #define bit(_a) (1<<((_a)-1))
 
-SIGTYPE nullf(sig)int sig; { }
+RETSIGTYPE nullf(sig)int sig; { }
 
 /*	napms - sleep for time milliseconds - uses setitimer() */
 napms(time)
 int time;
 {
 	struct itimerval    timeout;
-	SIGTYPE     (*oldhandler) ();
+	RETSIGTYPE     (*oldhandler) ();
 	int     oldsig=0;
 
 	if (time <= 0) return;
@@ -44,8 +46,8 @@ int time;
 /*  	sigsetmask(oldsig); */
 }
 
-#else /* ITIMER */
-#  ifdef FTIMER
+#else /* HAVE_SETITIMER */
+#  ifdef HAVE_FTIME
 /*	napms - sleep for time milliseconds - uses ftime() */
 
 napms(time)
@@ -72,7 +74,7 @@ int time;
 			break;
 	}
 }
-#  else /* FTIMER */
+#  else /* HAVE_FTIME */
 #    ifdef HZ
 /*	napms - sleep for time milliseconds - uses times() */
 napms(time)
@@ -92,5 +94,5 @@ int time;
 #    else
 napms(x) int x; {}
 #    endif /* HZ */
-#  endif /* FTIMER */
-#endif /* ITIMER */
+#  endif /* HAVE_FTIME */
+#endif /* HAVE_SETITIMER */

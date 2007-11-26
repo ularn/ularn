@@ -14,13 +14,13 @@
 #  include SYSTIME
 #endif /* ITIMER */
 
-#ifdef TERMIO
+#ifdef HAVE_TERMIO_H
 #  include <termio.h>
 #else
 #  include <sys/ioctl.h>
 #  include <sys/file.h>
 #  include <sgtty.h>
-#endif /* TERMIO */
+#endif /* HAVE_TERMIO_H */
 
 #include <ctype.h>
 #include <fcntl.h>

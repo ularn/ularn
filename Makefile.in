@@ -1,66 +1,38 @@
-case $CONFIG in
-'')
-    if test ! -f config.sh; then
-	ln ../config.sh . || \
-	ln ../../config.sh . || \
-	ln ../../../config.sh . || \
-	(echo "Can't find config.sh."; exit 1)
-    fi
-    . config.sh
-    ;;
-esac
-: This forces SH files to create target in same directory as SH file.
-: This is so that make depend always knows where to find SH derivatives.
-case "$0" in
-*/*) cd `expr X$0 : 'X\(.*\)/'` ;;
-esac
 
-echo "Extracting Makefile.u (with variable substitutions)"
-: This section of the file will have variable substitutions done on it.
-: Move anything that needs config subs from !NO!SUBS! section to !GROK!THIS!.
-: Protect any dollar signs and backticks that you do not want interpreted
-: by putting a backslash in front.  You may delete these comments.
-$spitshell >Makefile.u <<!GROK!THIS!
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
 ##########################################################################
 #  	the location of data files
-LIBDIR	= 	$libdir
+datarootdir = @datarootdir@
+DATADIR	= 	@datadir@/Ularn
 ##########################################################################
 
 ##########################################################################
 #	final location of binary (for 'make install')
-BINDIR = 	$bindir
+BINDIR = 	@bindir@
 ##########################################################################
 
 ##########################################################################
 #  	name of program
-PROGRAM	= 	$package
-##########################################################################
-
-##########################################################################
-# 	for termcap functions
-SYS_LIBRARIES=	$termlib $bsdlibs $zlib
+PROGRAM	= Ularn
 ##########################################################################
 
 ##########################################################################
 #	link flags
-LDFLAGS= $ldflags
+LDFLAGS= @LIBS@ @TERMLIBS@
 ##########################################################################
 
 ##########################################################################
 #	compile flags
-CFLAGS= $ccflags 
+CFLAGS= @CFLAGS@
 ##########################################################################
-!GROK!THIS!
 
-if test $hpux = "define" ; then
-echo "" >> Makefile.u
-echo "## HPUX gets to use gcc" >> Makefile.u
-echo "CC=gcc" >> Makefile.u 
-echo "" >> Makefile.u
-fi
+##########################################################################
+#	compile defs
+DEFS= -DLIBDIR='"@datadir@/Ularn"'
+##########################################################################
 
-: In the following dollars and backticks do not need the extra backslash.
-$spitshell >>Makefile.u <<'!NO!SUBS!'
 ##########################################################################
 #	the source files
 SRCS1	= action.c bill.c create.c data.c diag.c display.c fortune.c\
@@ -90,19 +62,19 @@ LIBFILES=	Uhelp Umaps Ufortune
 all:	$(PROGRAM)
 
 $(PROGRAM): $(OBJS1)
-	$(CC) -o $@ $(LDFLAGS) $(OBJS1)  $(SYS_LIBRARIES)
+	$(CC) $(DEFS) -o $@ $(LDFLAGS) $(OBJS1)  $(SYS_LIBRARIES)
 
 .c.o:	
-	$(CC) -c $(CFLAGS) $<
+	$(CC) $(DEFS) -c $(CFLAGS) $<
 
 ##########################################################################
 install: $(PROGRAM) $(LIBFILES)
-	if test ! -d $(LIBDIR) ; then mkdir -p $(LIBDIR) ; fi
-	-cp Umaps Ufortune Uhelp $(LIBDIR)
-	-chmod 644 $(LIBDIR)/Umaps $(LIBDIR)/Ufortune \
-		$(LIBDIR)/Uhelp
-	if test ! -d $(BINDIR) ; then mkdir -p $(BINDIR) ; fi
-	-cp $(PROGRAM) $(BINDIR)
+	if test ! -d $(DESTDIR)$(DATADIR) ; then mkdir -p $(DESTDIR)$(DATADIR) ; fi
+	-cp Umaps Ufortune Uhelp $(DESTDIR)$(DATADIR)
+	-chmod 644 $(DESTDIR)$(DATADIR)/Umaps $(DESTDIR)$(DATADIR)/Ufortune \
+		$(DESTDIR)$(DATADIR)/Uhelp
+	if test ! -d $(DESTDIR)$(BINDIR) ; then mkdir -p $(DESTDIR)$(BINDIR) ; fi
+	-cp $(PROGRAM) $(DESTDIR)$(BINDIR)
 
 
 lint:
@@ -112,7 +84,7 @@ clean:
 	rm -f $(PROGRAM) $(OBJS1) core Ularn.exe
 
 distclean: clean
-	rm -f config.h Makefile.u config.sh Makefile Imakefile
+	rm -f config.h Makefile
 	rm -f *~ .#*
 
 tags:	nulldep
@@ -149,6 +121,3 @@ store.o: header.h config.h extern.h
 tok.o: header.h config.h 
 nap.o: header.h config.h 
 tty.o: header.h config.h 
-!NO!SUBS!
-chmod 755 Makefile.u
-$eunicefix Makefile.u

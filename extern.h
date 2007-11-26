@@ -286,13 +286,13 @@ int show3(int);
 /* module: signal.c */
 
 int s2choose(void);
-SIGTYPE cntlc(int);
-SIGTYPE sgam(int);
-SIGTYPE tstop(int);
+RETSIGTYPE cntlc(int);
+RETSIGTYPE sgam(int);
+RETSIGTYPE tstop(int);
 void sigsetup(void);
 void sigsave(void);
 void sigreset(void);
-SIGTYPE sigpanic(int);
+RETSIGTYPE sigpanic(int);
 
 /* module: sphere.c */
 
@@ -637,13 +637,13 @@ int show3();
 /* module: signal.c */
 
 int s2choose();
-SIGTYPE cntlc();
-SIGTYPE sgam();
-SIGTYPE tstop();
+RETSIGTYPE cntlc();
+RETSIGTYPE sgam();
+RETSIGTYPE tstop();
 void sigsetup();
 void sigsave();
 void sigreset();
-SIGTYPE sigpanic();
+RETSIGTYPE sigpanic();
 
 /* module: sphere.c */
 

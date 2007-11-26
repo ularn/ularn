@@ -3,7 +3,7 @@
 #include "player.h"
 #include "extern.h"
 
-#ifndef TERMIO /* sgtty stuff */
+#ifndef HAVE_TERMIO_H /* sgtty stuff */
 #    define ECHOMASK		ECHO
 #    define termstruct		sgttyb
 #    define kill_sym		sg_kill
@@ -46,7 +46,7 @@ struct tchars inittyb2, curttyb2;
 #    define vtime	    	c_cc[VTIME]
 #    define inittyb2		inittyb
 #    define curttyb2		curttyb
-#endif /* TERMIO */
+#endif /* HAVE_TERMIO_H */
 
 extern short ospeed;
 
@@ -101,7 +101,7 @@ settty()
 setuptty()
 {
 	curttyb.echoflgs &= ~ECHOMASK;
-#ifdef TERMIO
+#ifdef HAVE_TERMIO_H
 	curttyb.cbrkflgs &= ~CBRKMASK;
 #else
 	curttyb.cbrkflgs |= CBRKMASK;
@@ -121,7 +121,7 @@ setuptty()
 scbr ()
 {
 	curttyb.cbrkflgs &= ~ECHOMASK;
-#ifdef TERMIO
+#ifdef HAVE_TERMIO_H
 	curttyb.cbrkflgs &= ~CBRKMASK;
 #else
 	curttyb.cbrkflgs |= CBRKMASK;
@@ -136,7 +136,7 @@ scbr ()
 sncbr ()
 {
 	curttyb.cbrkflgs |= ECHOMASK;
-#ifdef TERMIO
+#ifdef HAVE_TERMIO_H
  	curttyb.cbrkflgs |= CBRKMASK;
 #else
  	curttyb.cbrkflgs &= ~CBRKMASK;
