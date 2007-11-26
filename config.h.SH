@@ -66,6 +66,11 @@ sed <<!GROK!THIS! >config.h -e 's!^#undef!/\*#undef!'
  */
 #$d_getopt  GETOPT    /**/
 
+/* ZLIB:
+ * This symbox, if defined, indicates that the zlib library exists
+ */
+#$d_zlib ZLIB   /**/
+
 /* index:
  *  This preprocessor symbol is defined, along with rindex, if the system
  *  uses the strchr and strrchr routines instead.

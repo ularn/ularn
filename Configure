@@ -49,6 +49,7 @@ cppstdin=''
 cppminus=''
 d_ftime=''
 d_getopt=''
+d_zlib=''
 d_index=''
 d_termio=''
 d_voidsig=''
@@ -688,6 +689,17 @@ else
     d_getopt="$undef"
 fi
 
+: see if zlib exists
+echo " "
+if test -f /usr/include/zlib.h; then
+    echo 'zlib found.'
+    d_zlib="$define"
+    zlib="-lz"
+else
+    echo 'zlib not found.'
+    d_zlib="$undef"
+fi
+
 : index or strcpy
 echo " "
 case "$d_index" in
@@ -1256,7 +1268,7 @@ done
 :
 : where do we get termlib routines from
 echo " "
-ans=`loc libcurses.a x $libpth`
+ans=`loc libcurses.so x $libpth`
 case "$ans" in
 /*)
     ar t $ans >grimble

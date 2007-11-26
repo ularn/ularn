@@ -247,8 +247,6 @@ int greedy(void);
 int fsorry(void);
 int fcheat(void);
 int init_cells(void);
-int bwrite(int, char *, long);
-int bread(int, char *, long);
 unsigned int sum(unsigned char *, int);
 
 /* module: scores.c */
