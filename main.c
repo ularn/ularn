@@ -4,7 +4,6 @@
 #include "player.h"
 #include "itm.h"
 #include "extern.h"
-#include "patchlevel.h"
 
 static char copyright[]=
 "\nUlarn created by Phil Cordier -- based on Larn by Noah Morgan\n  Updated by Josh Brandt and David Richerby\n";
@@ -169,7 +168,8 @@ noone:		    	fprintf(stderr,"Who *are* you?\n");
 
 			case 'h':	/* print out command line arguments */
 				fprintf(stderr,"%s", copyright);
-				fprintf(stderr,"  Version %s.%s (%s)", VERSION, PATCHLEVEL, DATE);
+				fprintf(stderr,"  Version %s",
+					PACKAGE_VERSION);
 				fprintf(stderr,"\n%s", cmdhelp);
 				exit(0);
 
@@ -197,8 +197,8 @@ noone:		    	fprintf(stderr,"Who *are* you?\n");
 				    fprintf(stderr,"Unknown option <%s>\n",
 					argv[optind-1]);
 				fprintf(stderr,"%s\n", copyright);
-				fprintf(stderr,"Version %s.%s (%s)\n", VERSION, PATCHLEVEL, 
-						DATE);
+				fprintf(stderr,"Version %s\n",
+					PACKAGE_VERSION);
 				fprintf(stderr,"%s", cmdhelp);
 				exit(1);
 		} /* end switch */
@@ -589,8 +589,8 @@ parse ()
 
 			case 'v':	yrepcount=0;	
 					cursors();
-lprintf( "\nThe Addiction of Ularn -- Version %s.%s (%s)\nDifficulty level %d",
-	VERSION, PATCHLEVEL, DATE, (long)c[HARDGAME]);
+lprintf( "\nThe Addiction of Ularn -- Version %s\nDifficulty level %d",
+	PACKAGE_VERSION, (long)c[HARDGAME]);
 					if (wizard) lprcat(" (WIZARD)");
 					nomove=1;
 					if (cheat) lprcat(" (Cheater)");

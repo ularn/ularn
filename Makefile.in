@@ -6,6 +6,7 @@ exec_prefix = @exec_prefix@
 #  	the location of data files
 datarootdir = @datarootdir@
 DATADIR	= 	@datadir@/Ularn
+distdir = @PACKAGE_NAME@-@PACKAGE_VERSION@
 ##########################################################################
 
 ##########################################################################
@@ -51,12 +52,24 @@ OBJS1	= action.o bill.o create.o data.o diag.o display.o fortune.o\
 
 ##########################################################################
 #	header files
-HDRS	= header.h itm.h monst.h sphere.h config.h player.h
+HDRS	= header.h itm.h monst.h sphere.h config.h player.h extern.h
 ##########################################################################
 
 ##########################################################################
 #	data files
 LIBFILES=	Uhelp Umaps Ufortune
+##########################################################################
+
+##########################################################################
+#	build related files
+BUILDFILES=	Makefile.in configure configure.ac config.guess config.h.in \
+		config.sub
+##########################################################################
+
+##########################################################################
+#	misc files
+MISCFILES=	CHANGES.text INSTALL LICENSE MANIFEST README README.spoilers \
+		TODO Ularnopts
 ##########################################################################
 
 all:	$(PROGRAM)
@@ -87,6 +100,14 @@ distclean: clean
 	rm -f config.h Makefile
 	rm -f *~ .#*
 
+dist: clean
+	mkdir $(distdir)
+	cp $(LIBFILES) $(distdir)
+	cp $(HDRS) $(distdir)
+	cp $(SRCS1) $(distdir)
+	cp $(BUILDFILES) $(distdir)
+	cp $(MISCFILES) $(distdir)
+
 tags:	nulldep
 
 nulldep:
@@ -106,7 +127,7 @@ fortune.o: header.h config.h extern.h
 player.o: header.h config.h itm.h extern.h
 help.o: header.h config.h 
 io.o: header.h config.h extern.h
-main.o: header.h config.h patchlevel.h
+main.o: header.h config.h
 monster.o: header.h config.h itm.h player.h monst.h extern.h
 moreobj.o: header.h config.h player.h itm.h monst.h extern.h
 movem.o: header.h config.h player.h itm.h extern.h
