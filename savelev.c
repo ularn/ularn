@@ -6,7 +6,7 @@
 #include "monst.h"
 #include "extern.h"
 
-#ifdef ZLIB
+#ifdef HAVE_LIBZ
 #include <zlib.h>
 #endif
 
@@ -435,7 +435,7 @@ void fill_buffer(char *fname, Save_Buffer *save_buffer)
 	size_t bytes_read;
 	char buffer[1024];
 
-#ifdef ZLIB
+#ifdef HAVE_LIBZ
 	Byte *compr;
 	uLong uncomprLen;
 #endif
@@ -460,7 +460,7 @@ void fill_buffer(char *fname, Save_Buffer *save_buffer)
 	}
         save_buffer->data_ptr = 0;
 
-#ifdef ZLIB
+#ifdef HAVE_LIBZ
 	uncomprLen = save_buffer->data_len * 1000;
 	if (!(compr = malloc(uncomprLen))) died(284);
 	err = uncompress(compr, &uncomprLen, save_buffer->data, save_buffer->data_len);
@@ -477,7 +477,7 @@ void flush_buffer(char *fname, Save_Buffer *save_buffer)
 {
 	int fd, err;
 
-#ifdef ZLIB
+#ifdef HAVE_LIBZ
 	uLong comprLen = save_buffer->data_len * 2;
 	Byte *compr;
 #endif
@@ -490,7 +490,7 @@ void flush_buffer(char *fname, Save_Buffer *save_buffer)
 		exit(1);
 	}
 
-#ifdef ZLIB
+#ifdef HAVE_LIBZ
 	if (!(compr = malloc(comprLen))) died(284);
 	err = compress(compr, &comprLen, (const Bytef*)save_buffer->data, save_buffer->data_len);
 	if (err != Z_OK) died(284);
