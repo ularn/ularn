@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(Ularn, 1.6.0, josh@bress.net)
+AC_INIT(Ularn, 1.7.0, josh@bress.net)
 AC_CONFIG_SRCDIR([extern.h])
 AC_CONFIG_HEADER([config.h])
 
