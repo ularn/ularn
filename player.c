@@ -860,6 +860,7 @@ int itm, arg;
 	case OORB:	
 		c[ORB]--;
 		c[AWARENESS]--;
+		break;
 	case OSWORDofSLASHING:		
 		c[DEXTERITY] -= 5;
 		flag=1; 
