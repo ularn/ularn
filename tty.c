@@ -76,6 +76,7 @@ gettty()
 		perror("gettty 2");
 
 	curttyb = inittyb;
+	curttyb2 = inittyb2;
 	ospeed = O_SPEED(inittyb);
 
 	setuptty();
