@@ -12,11 +12,9 @@ AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-# Checks for libraries.
-AC_CHECK_LIB(z, gzgets)
-for termlib in curses termcap termlib; do
-    AC_CHECK_LIB(${termlib}, tgetent, [TERMLIBS="-l${termlib}"; break])
-done
+dnl Search for ncurses or curses
+AC_SEARCH_LIBS(wbkgdset, ncurses curses,,echo "*** The ncurses library is required!";exit 1)
+
 
 # Checks for header files.
 AC_HEADER_STDC
