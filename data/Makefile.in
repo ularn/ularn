@@ -1,0 +1,79 @@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+##########################################################################
+#  	the location of data files
+datarootdir = @datarootdir@
+DATADIR	= 	@datadir@/Ularn
+DOCDIR  =   @docdir@/@PACKAGE_NAME@-@PACKAGE_VERSION@
+distdir = @top_srcdir@/@PACKAGE_NAME@-@PACKAGE_VERSION@/data
+##########################################################################
+
+##########################################################################
+#	final location of binary (for 'make install')
+BINDIR = 	@bindir@
+##########################################################################
+
+##########################################################################
+#  	name of program
+PROGRAM	= Ularn
+##########################################################################
+
+##########################################################################
+#	link flags
+LDFLAGS= @LIBS@ @TERMLIBS@
+##########################################################################
+
+##########################################################################
+#	compile flags
+CFLAGS= @CFLAGS@
+##########################################################################
+
+##########################################################################
+#	compile defs
+DEFS= -DLIBDIR='"@datadir@/Ularn"'
+##########################################################################
+
+##########################################################################
+#	data files
+LIBFILES=	Uhelp Umaps Ufortune
+##########################################################################
+
+##########################################################################
+#	misc files
+MISCFILES=	Ularnopts
+##########################################################################
+
+##########################################################################
+#   build related files
+BUILDFILES= Makefile.in
+##########################################################################
+
+all:
+
+##########################################################################
+install: $(LIBFILES)
+	if test ! -d $(DESTDIR)$(DOCDIR) ; then mkdir -p $(DESTDIR)$(DOCDIR) ; fi
+	-cp $(MISCFILES) $(DESTDIR)$(DOCDIR)
+	-chmod 644 $(DESTDIR)$(DOCDIR)/*
+	if test ! -d $(DESTDIR)$(DATADIR) ; then mkdir -p $(DESTDIR)$(DATADIR) ; fi
+	-cp Umaps Ufortune Uhelp $(DESTDIR)$(DATADIR)
+	-chmod 644 $(DESTDIR)$(DATADIR)/Umaps $(DESTDIR)$(DATADIR)/Ufortune \
+		$(DESTDIR)$(DATADIR)/Uhelp
+
+lint:
+
+clean:
+
+distclean: clean
+	rm -f Makefile
+
+dist: clean
+	mkdir $(distdir)
+	cp $(LIBFILES) $(distdir)
+	cp $(MISCFILES) $(distdir)
+	cp $(BUILDFILES) $(distdir)
+
+tags:
+
