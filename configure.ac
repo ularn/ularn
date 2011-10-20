@@ -3,8 +3,8 @@
 
 AC_PREREQ(2.61)
 AC_INIT(Ularn, 1.7.0, josh@bress.net)
-AC_CONFIG_SRCDIR([extern.h])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_SRCDIR([src/extern.h])
+AC_CONFIG_HEADER([src/config.h])
 
 # Checks for programs.
 AC_PROG_CC
@@ -44,4 +44,6 @@ AC_SUBST(exec_prefix)
 AC_SUBST(datadir)
 
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([data/Makefile])
 AC_OUTPUT

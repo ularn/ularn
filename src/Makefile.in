@@ -1,0 +1,130 @@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+##########################################################################
+#  	the location of data files
+datarootdir = @datarootdir@
+DATADIR	= 	@datadir@/Ularn
+distdir = @top_srcdir@/@PACKAGE_NAME@-@PACKAGE_VERSION@/src
+##########################################################################
+
+##########################################################################
+#	final location of binary (for 'make install')
+BINDIR = 	@bindir@
+##########################################################################
+
+##########################################################################
+#  	name of program
+PROGRAM	= Ularn
+##########################################################################
+
+##########################################################################
+#	link flags
+LDFLAGS= @LIBS@ @TERMLIBS@
+##########################################################################
+
+##########################################################################
+#	compile flags
+CFLAGS= @CFLAGS@
+##########################################################################
+
+##########################################################################
+#	compile defs
+DEFS= -DLIBDIR='"@datadir@/Ularn"'
+##########################################################################
+
+##########################################################################
+#	the source files
+SRCS1	= action.c bill.c create.c data.c diag.c display.c fortune.c\
+	player.c help.c io.c main.c monster.c moreobj.c movem.c object.c\
+	regen.c savelev.c scores.c show.c signal.c sphere.c store.c tok.c \
+	nap.c tty.c
+##########################################################################
+
+##########################################################################
+#	the object files
+OBJS1	= action.o bill.o create.o data.o diag.o display.o fortune.o\
+	player.o help.o io.o main.o monster.o moreobj.o movem.o object.o\
+	regen.o savelev.o scores.o show.o signal.o sphere.o store.o tok.o \
+	nap.o tty.o
+##########################################################################
+
+##########################################################################
+#	header files
+HDRS	= header.h itm.h monst.h sphere.h config.h player.h extern.h
+##########################################################################
+
+##########################################################################
+#   build related files
+BUILDFILES= Makefile.in config.h.in
+##########################################################################
+
+all:	$(PROGRAM)
+
+$(PROGRAM): $(OBJS1)
+	$(CC) $(DEFS) -o $@ $(LDFLAGS) $(OBJS1)  $(SYS_LIBRARIES)
+
+.c.o:	
+	$(CC) $(DEFS) -c $(CFLAGS) $<
+
+##########################################################################
+install: $(PROGRAM)
+	if test ! -d $(DESTDIR)$(DATADIR) ; then mkdir -p $(DESTDIR)$(DATADIR) ; fi
+	-cp Umaps Ufortune Uhelp $(DESTDIR)$(DATADIR)
+	-chmod 644 $(DESTDIR)$(DATADIR)/Umaps $(DESTDIR)$(DATADIR)/Ufortune \
+		$(DESTDIR)$(DATADIR)/Uhelp
+	if test ! -d $(DESTDIR)$(BINDIR) ; then mkdir -p $(DESTDIR)$(BINDIR) ; fi
+	-cp $(PROGRAM) $(DESTDIR)$(BINDIR)
+
+
+lint:
+	lint $(SRCS1) $(LINTLIBS)
+
+clean:
+	rm -f $(PROGRAM) $(OBJS1) core Ularn.exe
+
+distclean: clean
+	rm -f config.h Makefile
+	rm -f *~ .#*
+
+dist: clean
+	mkdir $(distdir)
+	cp $(HDRS) $(distdir)
+	cp $(SRCS1) $(distdir)
+	cp $(BUILDFILES) $(distdir)
+
+tags:	nulldep
+
+nulldep:
+	ctags -w $(SRCS1) $(HDRS)
+	rm -f TAGS
+	ctags -xw $(SRCS1) $(HDRS) > TAGS
+##########################################################################
+
+# DO NOT DELETE
+action.o: header.h config.h extern.h
+bill.o: header.h config.h 
+create.o: header.h config.h itm.h extern.h
+data.o: header.h config.h 
+diag.o: header.h config.h 
+display.o: header.h config.h player.h itm.h monst.h extern.h
+fortune.o: header.h config.h extern.h
+player.o: header.h config.h itm.h extern.h
+help.o: header.h config.h 
+io.o: header.h config.h extern.h
+main.o: header.h config.h
+monster.o: header.h config.h itm.h player.h monst.h extern.h
+moreobj.o: header.h config.h player.h itm.h monst.h extern.h
+movem.o: header.h config.h player.h itm.h extern.h
+object.o: header.h config.h player.h extern.h
+regen.o: header.h config.h extern.h
+savelev.o: header.h config.h sphere.h player.h itm.h monst.h extern.h
+scores.o: header.h config.h player.h extern.h
+show.o: header.h config.h 
+signal.o: header.h config.h 
+sphere.o: header.h config.h itm.h sphere.h extern.h
+store.o: header.h config.h extern.h
+tok.o: header.h config.h 
+nap.o: header.h config.h 
+tty.o: header.h config.h 
