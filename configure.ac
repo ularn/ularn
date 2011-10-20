@@ -12,6 +12,8 @@ AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
+AC_CHECK_LIB(z, compress)
+
 dnl Search for ncurses or curses
 AC_SEARCH_LIBS(wbkgdset, ncurses curses,,echo "*** The ncurses library is required!";exit 1)
 
