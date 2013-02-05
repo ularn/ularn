@@ -75,7 +75,7 @@ diag()
 
 	fprintf(dfile, "Hit points: %2ld(%2ld)\n", c[HP], c[HPMAX]);
 
-	fprintf(dfile, "gold: %ld  Experience: %ld  Character level: %d  Level in caverns: %ld\n",
+	fprintf(dfile, "gold: %ld  Experience: %ld  Character level: %ld  Level in caverns: %d\n",
 	(long) c[GOLD],
 	(long) c[EXPERIENCE],
 	(long) c[LEVEL],
