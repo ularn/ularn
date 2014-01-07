@@ -475,7 +475,7 @@ void fill_buffer(char *fname, Save_Buffer *save_buffer)
 
 void flush_buffer(char *fname, Save_Buffer *save_buffer)
 {
-	int fd, err;
+	int fd, err, write_len;
 
 #ifdef HAVE_LIBZ
 	uLong comprLen = save_buffer->data_len * 2;
@@ -494,10 +494,10 @@ void flush_buffer(char *fname, Save_Buffer *save_buffer)
 	if (!(compr = malloc(comprLen))) died(284);
 	err = compress(compr, &comprLen, (const Bytef*)save_buffer->data, save_buffer->data_len);
 	if (err != Z_OK) died(284);
-	write(fd, compr, comprLen);
+	write_len = write(fd, compr, comprLen);
 	free(compr);
 #else
-	write(fd, save_buffer->data, save_buffer->data_len);
+	write_len = write(fd, save_buffer->data, save_buffer->data_len);
 #endif
 
 	close(fd);

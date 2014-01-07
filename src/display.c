@@ -65,7 +65,7 @@ bot_linex()
 			/* c[HP], c[HPMAX], c[STRENGTH]+c[STREXTRA], */
 			/* c[INTELLIGENCE]); */
 
-		sprintf(buf, "%d (%d)", c[HP], c[HPMAX]);
+		sprintf(buf, "%ld (%ld)", c[HP], c[HPMAX]);
 		/*       12345   111122   222222   3 */
 		/*               678901   345678   0 */
 		lprintf("HP: %11s STR=%-2d INT=%-2d ",
@@ -216,7 +216,7 @@ bothp()
 		return;
 	cbak[HP]=c[HP];
 	cbak[HPMAX]=c[HPMAX];
-	sprintf(buf, "%d (%d)", c[HP], c[HPMAX]);
+	sprintf(buf, "%ld (%ld)", c[HP], c[HPMAX]);
 	cursor(5, 19);
 	lprintf("%11s", buf);
 }

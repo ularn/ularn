@@ -9,9 +9,11 @@ long Taxes;
 
 letter1()
 {
+	int write_len;
+	
 	sprintf(mail600, "/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 
@@ -36,9 +38,11 @@ lprcat("\nto your future successful expeditions.\n");
 
 letter2 ()
 {
+	int write_len;
+	
 	sprintf(mail600,"/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 
@@ -57,9 +61,11 @@ lprcat("\nMay you live in happiness for evermore...\n");
 
 letter3 ()
 {
+	int write_len;
+	
 	sprintf(mail600,"/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 
@@ -75,9 +81,11 @@ lprcat(" onward, be warned:\nupon our meeting you shall pay the price!\n");
 
 letter4 ()
 {
+	int write_len;
+	
 	sprintf(mail600,"/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 	lprcat("From: mainair@ularn.com (Duke of Ularnty)\n");
@@ -94,9 +102,11 @@ lprcat("\nunleash some of thy wealth upon those who be unfortunate, I,");
 
 letter5 ()
 {
+	int write_len;
+	
 	sprintf(mail600,"/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 	lprcat("From: stmarys@ularn.com (St. Mary's Children's Home)\n");
@@ -115,9 +125,11 @@ lprcat("\ngood food.  Could you possibly find it in your heart to help us");
 
 letter6 ()
 {
+	int write_len;
+	
 	sprintf(mail600,"/tmp/#%dmail600",pid); /* prepare path */
 	if (lcreat(mail600) < 0) { 
-		write(1,"can't write 600 letter\n",23); 
+		write_len = write(1,"can't write 600 letter\n",23); 
 		return(0);
 	}
 	lprcat("From: nds@ularn.com (National Dianthroritis Society of Ularn)\n");
@@ -145,7 +157,7 @@ static int (*pfn[])()= {
 
 mailbill ()
 {
-	int i;
+	int i, system_rtn;
 	char buf[128];
 
 	wait((int *)0);
@@ -157,7 +169,7 @@ mailbill ()
 				sleep(20);  
 				sprintf(buf,"/bin/mail %s < %s",
 					loginname,mail600);
-				system(buf);  
+				system_rtn = system(buf);  
 				unlink(mail600);
 			}
 		exit(0);

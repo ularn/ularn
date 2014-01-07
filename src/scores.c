@@ -755,7 +755,7 @@ int	x;
 	puts("---------------------------------------------------------------");
 	puts("                 U L A R N    S C O R E S");
 	puts("---------------------------------------------------------------");
-	printf("Score: %ld  Diff: %d  ", c[GOLD], c[HARDGAME]);
+	printf("Score: %ld  Diff: %ld  ", c[GOLD], c[HARDGAME]);
 	printf("Level: %s  Char: %s\n", cls, char_class);
 	printf("\t%s", logname);
 	if (wizard) 
@@ -822,9 +822,9 @@ int	index;
 	default:
 		printf("\n%c)   %s", index + 'a' , objectname[iven[index]]);
 		if (ivenarg[index] > 0)
-			printf(" + %d", (long)ivenarg[index]);
+			printf(" + %ld", (long)ivenarg[index]);
 		else if (ivenarg[index] < 0)
-			printf(" %d", (long)ivenarg[index]);
+			printf(" %ld", (long)ivenarg[index]);
 		break;
 	}
 	if (c[WIELD] == index) 

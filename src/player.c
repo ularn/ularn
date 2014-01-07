@@ -947,13 +947,14 @@ char *str;
 getpassword ()
 {
 	char gpwbuf[BUFSIZ];
+	char *fgets_ptr;
 
 	scbr();
 	lprcat("\nEnter Password: "); 
 	lflush();
 /* this should be fgets, with a limit of BUFSIZ or so, yes yes. */
 /* 	gets(gpwbuf); */
-	fgets(gpwbuf,BUFSIZ-1,stdin);
+	fgets_ptr = fgets(gpwbuf,BUFSIZ-1,stdin);
 	gpwbuf[strcspn(gpwbuf,"\n")]='\0'; /* take off last \n */
 /*	printf("Oh, look, we got %s.\n",gpwbuf);
 	printf("we want %s.\n",password); */

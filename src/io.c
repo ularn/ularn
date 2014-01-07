@@ -221,14 +221,14 @@ char *buf;
 int len;
 {
 	char *str;
-	int num2;
+	int num2, write_len;
 
 	/* don't copy data if can just write it */
 	if (len > 399)  {
 		for (str=buf;  len>0; --len)
 			lprc(*str++);
 		lflush();
-		write(lfd,buf,len);
+		write_len = write(lfd,buf,len);
 	}
 	else while (len) {
 		if (lpnt >= lpend)
@@ -750,8 +750,10 @@ int c;
  */
 flush_buf()
 {
+	int write_len;
+	
 	if (ind)
-		write(lfd, outbuf, ind);
+		write_len = write(lfd, outbuf, ind);
 	ind = 0;
 }
 
