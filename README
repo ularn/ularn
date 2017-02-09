@@ -13,10 +13,6 @@ on this in the future, if people ask, but I probably won't bother.
 Anyway, mail me patches and things if you have them. Fix things in the TODO
 and I'll be really happy.
 
-Ularn is distributed under the Gnu Public License. This is because the
-original author included Gnu getopt in main.c. I have included a copy of the
-Gnu Public License for your perusal, in the file GPL.
-
 I would appreciate it, if you happen to include Ularn on a compilation or
 software distribution of some sort, if you let me know. A copy of the
 package you're including it in would also be welcome. If you make any

@@ -34,7 +34,7 @@ AC_FUNC_MALLOC
 AC_FUNC_REALLOC
 AC_FUNC_SETPGRP
 AC_TYPE_SIGNAL
-AC_CHECK_FUNCS([ftime strcspn getopt random drand48 setitimer])
+AC_CHECK_FUNCS([ftime strcspn random drand48 setitimer])
 
 AC_SUBST(TERMLIBS)
 AC_SUBST(LIBS)
