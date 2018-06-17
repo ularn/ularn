@@ -12,6 +12,20 @@ AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
+# Detect 64-bit (currently only AMD/Intel) to force it down to 32-bits
+# via the '-m32' flag.  We immediately append it to CFLAGS so that
+# subsequent tests will run against the 32-bit libraries and not the
+# 64-bit ones.
+#
+# This is not good autoconf but I've run out of ideas for tricking it
+# into doing the right thing.
+AS_CASE([`./config.guess`],
+    [x86_64-*-*], [force_32bit=" -m32"],
+    [force_32bit=""]
+    )
+CFLAGS="$CFLAGS$force_32bit"
+LDFLAGS="$LDFLAGS$force_32bit"
+
 AC_CHECK_LIB(z, compress)
 
 dnl Search for ncurses or curses

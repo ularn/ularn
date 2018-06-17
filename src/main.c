@@ -96,7 +96,7 @@ noone:		    	fprintf(stderr,"Who *are* you?\n");
 	sprintf(buf, "%s/%s", ptr, ckpfile);	/* the checkpoint file */
 	strcpy(ckpfile, buf);
 
-	sprintf(scorefile, "%s/%s", libdir, SCORENAME); /* the Ularn scoreboard filename */
+	sprintf(scorefile, "%s/score/%s", libdir, SCORENAME); /* the Ularn scoreboard filename */
 
 	sprintf(helpfile, "%s/%s", libdir, HELPNAME); 	/* the Ularn on-line help file */
 
