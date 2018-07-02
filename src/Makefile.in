@@ -21,12 +21,19 @@ PROGRAM	= Ularn
 
 ##########################################################################
 #	link flags
-LDFLAGS= @LIBS@ @TERMLIBS@
+SYS_LIBRARIES = @LIBS@ @TERMLIBS@
+LDFLAGS= @LDFLAGS@
+
 ##########################################################################
 
 ##########################################################################
 #	compile flags
-CFLAGS= @CFLAGS@
+
+# Ularn is such a mess that there's no point in seeing warnings.
+# The -Wno-error=return-type is needed to compile with clang.
+DISABLED_WARNINGS=-w -Wno-error=return-type
+CFLAGS= $(DISABLED_WARNINGS) @CFLAGS@
+
 ##########################################################################
 
 ##########################################################################
@@ -74,6 +81,9 @@ install: $(PROGRAM)
 	-cp Umaps Ufortune Uhelp $(DESTDIR)$(DATADIR)
 	-chmod 644 $(DESTDIR)$(DATADIR)/Umaps $(DESTDIR)$(DATADIR)/Ufortune \
 		$(DESTDIR)$(DATADIR)/Uhelp
+	-mkdir $(DESTDIR)$(DATADIR)/score
+	-chmod 777 $(DESTDIR)$(DATADIR)/score
+	-touch $(DESTDIR)$(DATADIR)/score/WORLD-READABLE-SCORE-FILE-GOES-HERE
 	if test ! -d $(DESTDIR)$(BINDIR) ; then mkdir -p $(DESTDIR)$(BINDIR) ; fi
 	-cp $(PROGRAM) $(DESTDIR)$(BINDIR)
 
