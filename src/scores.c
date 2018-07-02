@@ -109,7 +109,7 @@ static char	*whydead[] = {
  *
  *	returns -1 if unable to read in the scoreboard, returns 0 if all is OK
  */
-readboard()
+int readboard()
 {
 	FILE *fp;
 
@@ -142,7 +142,7 @@ readboard()
  *
  *	returns -1 if unable to write the scoreboard, returns 0 if all is OK
  */
-writeboard()
+int writeboard()
 {
 	FILE *fp;
 
@@ -175,7 +175,7 @@ writeboard()
  *
  *	returns -1 if unable to write the scoreboard, returns 0 if all is OK
  */
-makeboard()
+int makeboard()
 {
 	int	i;
 
@@ -200,7 +200,7 @@ makeboard()
  *	scoreboard.  This function also sets outstanding_taxes to the value in
  *	the winners scoreboard.
  */
-hashewon()
+int hashewon()
 {
 	int	i;
 
@@ -226,8 +226,7 @@ hashewon()
  *	Enter with the amount (in gp) to pay on the taxes.
  *	Returns amount actually paid.
  */
-long	paytaxes(x)
-long	x;
+long	paytaxes(long x)
 {
 	int	i;
 	long	amt;
@@ -263,7 +262,7 @@ long	x;
  *
  *	Returns the number of players on scoreboard that were shown 
  */
-winshou()
+int winshou()
 {
 	struct wscofmt *p;
 	int	i, j, count;
@@ -312,8 +311,7 @@ winshou()
  *	Enter with 0 to list the scores, enter with 1 to list inventories too
  *	Returns the number of players on scoreboard that were shown 
  */
-shou(x)
-int	x;
+int shou(int x)
 {
 	int	i, j, n;
 	int	count;
@@ -385,7 +383,7 @@ int	x;
  */
 static char	esb[] = "\nThe scoreboard is empty.\n";
 
-showscores()
+void showscores()
 {
 	int	i, j;
 
@@ -408,7 +406,7 @@ showscores()
  *
  *	Returns nothing of value
  */
-showallscores()
+void showallscores()
 {
 	int	i, j;
 
@@ -441,7 +439,7 @@ showallscores()
  *
  *	Returns 0 if no sorting done, else returns 1
  */
-sortboard()
+int sortboard()
 {
 	int	i, j, pos;
 	long	jdat;
@@ -482,10 +480,7 @@ sortboard()
  *		died() reason # in whyded, and TRUE/FALSE in winner if a winner
  *	ex.		newscore(1000, "player 1", 32, 0);
  */
-newscore(score, whoo, whyded, winner)
-long	score;
-int	winner, whyded;
-char	*whoo;
+void newscore(long score, char *whoo, int whyded, int winner)
 {
 	int	i;
 	long	taxes;
@@ -546,10 +541,7 @@ char	*whoo;
  *		slot in scoreboard in i, and the tax bill in taxes.
  *	Returns nothing of value
  */
-new1sub(score, i, whoo, taxes)
-long	score, taxes;
-int	i;
-char	*whoo;
+void new1sub(long score, int i, char *whoo, long taxes)
 {
 	struct wscofmt *p;
 
@@ -578,10 +570,7 @@ char	*whoo;
  *		died() reason # in whyded, and slot in scoreboard in i.
  *	Returns nothing of value
  */
-new2sub(score, i, whoo, whyded)
-long	score;
-int	i, whyded;
-char	*whoo;
+void new2sub(long score, int i, char *whoo, int whyded)
 {
 	int	j;
 	struct scofmt *p;
@@ -651,8 +640,7 @@ char	*whoo;
 
 static int	scorerror;
 
-died(x)
-int	x;
+void died(int x)
 {
 	int	f, win;
 	if (c[LIFEPROT] > 0) /* if life protection */ {
@@ -745,8 +733,7 @@ invalid:
  *	diedsub(x) 
  *	int x;
  */
-diedsub(x)
-int	x;
+void diedsub(int x)
 {
 	char	ch, *mod, *cls;
 	cls = class[c[LEVEL]];
@@ -790,8 +777,7 @@ int	x;
 	fflush(stdout);
 }
 
-showscore3(index)
-int	index;
+void showscore3(int index)
 {
 	switch (iven[index]) {
 	case OPOTION:	
@@ -834,9 +820,7 @@ int	index;
 	fflush(stdout);
 }
 
-showscore1(idx, str2)
-int	idx;
-char	*str2[];
+void showscore1(int idx, char *str2[])
 {
 	if (str2 == 0)
 		printf("\n%c)   %s", idx + 'a' , objectname[iven[idx]]);

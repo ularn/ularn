@@ -30,8 +30,7 @@
  *	  sphere in lifetime (in turns)
  *	Returns the number of spheres currently in existence
  */
-newsphere (x, y, dir, life)
-int x, y, dir, life;
+void newsphere (int x, int y, int dir, int life)
 {
 	int m,i;
 	struct sphere *sp;
@@ -133,8 +132,7 @@ lprcat("\nTwo spheres of annihilation collide! You hear a great earth-shaking bl
  *	Enter with the coordinates of the sphere (on current level)
  *	Returns the number of spheres currently in existence
  */
-rmsphere (x, y)
-int x, y;
+void rmsphere (int x, int y)
 {
 	struct sphere *sp,*sp2=(struct sphere *)NULL;
 
@@ -167,8 +165,7 @@ int x, y;
  *
  *	Enter with the coordinates of the blast, Returns no value
  */
-sphboom (x, y)
-int x, y;
+void sphboom (int x, int y)
 {
 	int i,j,k;
 
@@ -202,7 +199,7 @@ int x, y;
  * No value is returned.
  */
 #define SPHMAX 20	/* maximum number of spheres movsphere can handle */
-movsphere()
+void movsphere()
 {
 	int x,y,dir,len;
 	struct sphere *sp,*sp2;

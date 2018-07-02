@@ -53,7 +53,7 @@ void flush_buffer(char *fname, Save_Buffer *save_buffer);
 /*
  *	routine to save the present level into storage
  */
-savelevel()
+void savelevel()
 {
 	Saved_Level *storage = saved_levels[level];
 
@@ -69,7 +69,7 @@ savelevel()
 /*
  *	routine to restore a level from storage
  */
-getlevel()
+void getlevel()
 {
 	unsigned int i;
 
@@ -102,8 +102,7 @@ getlevel()
 /*
  *	to save the game in a file
  */
-savegame(fname)
-char	*fname;
+int savegame(char *fname)
 {
 	int	i;
 	char genocided; /* To keep save files compatible with old struct monst */
@@ -196,8 +195,7 @@ char	*fname;
 }
 
 
-restoregame(fname)
-char	*fname;
+void restoregame(char *fname)
 {
 	int	i;
 	char genocided; /* To keep save files compatible with old struct monst */
@@ -329,7 +327,7 @@ char	*fname;
 
 /*
 	subroutine to not allow greedy cheaters */
-greedy()
+void greedy()
 {
 	if (wizard) 
 		return;
@@ -349,7 +347,7 @@ lprcat("Since you are GREEDY as well as a CHEATER, I cannot allow this game\n");
 	subroutine to not allow altered save files and terminate the attempted
 	restart
  */
-fsorry()
+void fsorry()
 {
 	if (cheat) 
 		return;
@@ -364,7 +362,7 @@ fsorry()
 /*
 	subroutine to not allow game if save file can't be deleted
  */
-fcheat()
+void fcheat()
 {
 	if (wizard) 
 		return;
@@ -382,7 +380,7 @@ lprcat("is in.  Since this is unfair to the rest of the Ularn community, I\n");
 }
 
 
-init_cells()
+void init_cells()
 {
 	int	i;
 
@@ -503,10 +501,7 @@ void flush_buffer(char *fname, Save_Buffer *save_buffer)
 	close(fd);
 }
 
-unsigned int
-sum(data, n)
-unsigned char *data;
-int n;
+unsigned int sum(unsigned char *data, int n)
 {
 	unsigned int sum;
 	int c, nb;

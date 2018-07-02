@@ -4,8 +4,7 @@
 #include "player.h"
 #include "extern.h"
 
-run (dir)
-int dir;
+void run (int dir)
 {
 	int i;
 	i=1; 
@@ -27,7 +26,7 @@ int dir;
 /*
 	function to wield a weapon
  */
-wield ()	
+void wield ()	
 {
 	int i;
 
@@ -71,15 +70,13 @@ wield ()
 /*
 	common routine to say you don't have an item
  */
-ydhi (x)
-int x;
+void ydhi (int x)
 { 
 	cursors();  
 	lprintf("\nYou don't have item %c!",x); 
 }
 
-ycwi (x)
-int x;
+void ycwi (int x)
 { 
 	cursors();  
 	lprintf("\nYou can't wield item %c!",x); 
@@ -88,7 +85,7 @@ int x;
 /*
 	function to wear armor
  */
-wear ()
+void wear ()
 {
 	int i;
 
@@ -154,7 +151,7 @@ wear ()
 /*
 	function to drop an object
  */
-dropobj ()
+void dropobj ()
 {
 	int i, pitflag=0;
 	char *p;
@@ -227,7 +224,7 @@ dropobj ()
 /*
  *	readscr()		Subroutine to read a scroll one is carrying
  */
-readscr ()
+void readscr ()
 {
 	int i;
 
@@ -260,7 +257,7 @@ readscr ()
 /*
  *	subroutine to eat a cookie one is carrying
  */
-eatcookie ()
+void eatcookie ()
 {
 	int i;
 	char *fortune(), *p;
@@ -292,7 +289,7 @@ eatcookie ()
 /*
  *	subroutine to quaff a potion one is carrying
  */
-quaff ()
+void quaff ()
 {
 	int i;
 
@@ -319,7 +316,7 @@ quaff ()
 	}
 }
 
-qwhatitem ()
+int qwhatitem ()
 {
 	int j, i=0;
 	char tmp[IVENSIZE];
@@ -347,8 +344,7 @@ qwhatitem ()
 /*
 	function to ask what player wants to do
  */
-whatitem (str)
-char *str;
+int whatitem (char *str)
 {
 	int j=0, flag=0, i=0;
 	int wld=0, q=0, r=0, w=0, e=0, d=0;
@@ -473,7 +469,7 @@ long mx;
 	return (amt);
 }
 
-do_create()
+void do_create()
 {
 	int t, a;
 

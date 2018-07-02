@@ -12,7 +12,7 @@
 
 	subroutine to regenerate player hp and spells
  */
-regen()
+void regen()
 {
 	int i,flag;
 	long *d;

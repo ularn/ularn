@@ -291,7 +291,7 @@ noone:		    	fprintf(stderr,"Who *are* you?\n");
  *
  *	get and execute a command
  */
-parse ()
+void parse ()
 {
 	int i,j;
 	int k,flag;

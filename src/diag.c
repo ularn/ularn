@@ -61,7 +61,7 @@ char *ivendef[] = {
 
 FILE *dfile;
 
-diag()
+void diag()
 {
 	int	i, j;
 
@@ -184,7 +184,7 @@ diag()
 /*
 	draw the whole screen
  */
-diagdrawscreen()
+void diagdrawscreen()
 {
 	int	i, j, k;
 

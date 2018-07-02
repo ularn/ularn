@@ -35,7 +35,7 @@
  *  cl_line(x,y)         	Clear line at [1,y] and leave cursor at [x,y]
  *  cl_up(x,y)    		Clear screen from [x,1] to current line.
  *  cl_dn(x,y) 			Clear screen from [1,y] to end of display.
- *  standout(str)	 	Print the string in standout mode.
+ *  ularn_standout(str)	 	Print the string in standout mode.
  *  set_score_output() 		Called when output should be literally printed.
  ** putcharacter(ch)		Print one character in decoded output buffer.
  ** flush_buf()			Flush buffer with decoded output.
@@ -47,6 +47,8 @@
  */
 #include "header.h"
 #include "extern.h"
+
+#include <term.h>
 
 #define LINBUFSIZE 128		/* size of the lgetw() and lgetl() buffer */
 
@@ -99,7 +101,7 @@ newgame ()
  */
 /*VARARGS*/
 
-int lprintf(char *fmt, ...)
+void lprintf(char *fmt, ...)
 {
     va_list ap;
 	char *outb,*tmpb;
@@ -610,10 +612,9 @@ int x, y;
 }
 
 /*
- * standout(str)  Print the argument string in inverse video (standout mode).
+ * ularn_standout(str)  Print the argument string in inverse video (standout mode).
  */
-standout (str)
-char *str;
+void ularn_standout (char *str)
 {
 	if (boldon == 0) {
 		lprcat(str);
@@ -641,7 +642,7 @@ set_score_output() {
  */
 static int scrline=18; /* line # for wraparound instead of scrolling if no DL */
 
-lflush ()
+void lflush ()
 {
 	int lpoint;
 	char *str;
@@ -737,8 +738,7 @@ static int ind=0;
 /*
  * putcharacter(c)		Print one character in decoded output buffer.
  */
-putcharacter(c)
-int c;
+int putcharacter(int c)
 {
 	outbuf[ind++]=c;
 	if(ind>=BUFSIZ)
@@ -748,7 +748,7 @@ int c;
 /*
  * flush_buf()			Flush buffer with decoded output.
  */
-flush_buf()
+void flush_buf()
 {
 	int write_len;
 	
@@ -768,8 +768,7 @@ flush_buf()
  *
  *
  */
-tmcapcnv(sd,ss)
-char *sd, *ss;
+void tmcapcnv(char *sd,char *ss)
 {
 	int tmstate=0;	/* 0=normal, 1=ESC 2=[ 3=# */
 	char tmdigit=0;	/* the # in \33[#m */

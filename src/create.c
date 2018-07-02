@@ -49,8 +49,7 @@ makeplayer ()
  *	levels will get a few more monsters.
  *	Note that it is here we remove genocided monsters from the present level
  */
-newcavelevel (x)
-int x;
+void newcavelevel (int x)
 {
 	int i,j;
 
@@ -87,8 +86,7 @@ int x;
  */
 static int mx,mxl,mxh,my,myl,myh,tmp2;
 
-makemaze (lev)
-int lev;
+void makemaze (int lev)
 {
 	int i,j;
 	int tmp, z;
@@ -160,8 +158,7 @@ int lev;
 /*
 	function to eat away a filled in maze
  */
-eat (xx,yy)
-int xx, yy;
+void eat (int xx,int yy)
 {
 	int dir,try;
 
@@ -225,8 +222,7 @@ int xx, yy;
  *		!	cure dianthroritis	-	random object
  */
 
-cannedlevel (lev)
-int lev;
+int cannedlevel (int lev)
 {
 	int i,j;
 	int it,arg,mit,marg;
@@ -307,8 +303,7 @@ int lev;
  *	- level 10's treasure room has the eye in it and demon lords
  *	- level V5 has potion of cure dianthroritis and demon prince
  */
-treasureroom(lv)
-int lv;
+void treasureroom(int lv)
 {
 	int tx,ty,xsize,ysize;
 
@@ -329,8 +324,7 @@ int lv;
  *	room is filled with objects and monsters
  *	the coordinate given is that of the upper left corner of the room
  */
-troom(lv,xsize,ysize,tx,ty,glyph)
-int lv,xsize,ysize,tx,ty,glyph;
+void troom(int lv,int xsize,int ysize,int tx,int ty,int glyph)
 {
 	int i,j;
 	int bupx, bupy;
@@ -388,8 +382,7 @@ int lv,xsize,ysize,tx,ty,glyph;
  *	***********
  *	subroutine to create the objects in the maze for the given level
  */
-makeobject (j)
-int j;
+void makeobject (int j)
 {
 	int i;
 
@@ -618,8 +611,7 @@ zug:
 /*
  *	subroutine to fill in a number of objects of the same kind
  */
-fillmroom(n,what,arg)
-int n, what, arg;
+void fillmroom(int n,int what,int arg)
 {
 	int i;
 
@@ -627,8 +619,7 @@ int n, what, arg;
 		fillroom(what,arg);
 }
 
-froom(n,itm,arg)
-int n, itm, arg;
+void froom(int n,int itm,int arg)
 {
 	if (rnd(151) < n)
 		fillroom(itm,arg);
@@ -638,8 +629,7 @@ int n, itm, arg;
  *	subroutine to put an object into an empty room
  *	uses a random walk
  */
-fillroom (what,arg)
-int what, arg;
+void fillroom (int what,int arg)
 {
 	int x,y;
 
@@ -665,8 +655,7 @@ int what, arg;
  *	subroutine to put monsters into an empty room without walls or other
  *	monsters
  */
-fillmonst (what)
-int what;
+int fillmonst (int what)
 {
 	int x,y,trys;
 
@@ -690,8 +679,7 @@ int what;
  *	must be done when entering a new level
  *	if sethp(1) then wipe out old monsters else leave them there
  */
-sethp (flg)
-int flg;
+void sethp (int flg)
 {
 	int i,j;
 
@@ -744,7 +732,7 @@ int flg;
 /*
  *	Function to destroy all genocided monsters on the present level
  */
-checkgen ()
+void checkgen ()
 {
 	int x,y;
 

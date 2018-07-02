@@ -1,6 +1,8 @@
 /*	header.h */
 #include "config.h"
 
+#include <ncurses.h>
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/param.h>

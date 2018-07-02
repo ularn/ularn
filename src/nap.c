@@ -1,5 +1,6 @@
 /* nap.c */
 #include "header.h"
+#include "extern.h"
 
 #include <sys/time.h>
 
@@ -8,15 +9,14 @@ int nonap = 0;
 /*
  *	routine to take a nap for n milliseconds
  */
-nap(x)
-int x;
+void nap(int x)
 {
 	if (x<=0 || nonap)
 		return; /* eliminate chance for infinite loop */
 	lflush();
 	if (x > 999) 
 		sleep ((int)(x/1000));
-	else napms(x);
+	else ularn_napms(x);
 }
 
 #ifdef HAVE_SETITIMER
@@ -24,9 +24,8 @@ int x;
 
 RETSIGTYPE nullf(sig)int sig; { }
 
-/*	napms - sleep for time milliseconds - uses setitimer() */
-napms(time)
-int time;
+/*	ularn_napms - sleep for time milliseconds - uses setitimer() */
+void ularn_napms(int time)
 {
 	struct itimerval    timeout;
 	RETSIGTYPE     (*oldhandler) ();
@@ -48,10 +47,9 @@ int time;
 
 #else /* HAVE_SETITIMER */
 #  ifdef HAVE_FTIME
-/*	napms - sleep for time milliseconds - uses ftime() */
+/*	ularn_napms - sleep for time milliseconds - uses ftime() */
 
-napms(time)
-int time;
+void ularn_napms(int time)
 {
 	struct timeb _gtime;
 	time_t matchtime;
@@ -76,9 +74,8 @@ int time;
 }
 #  else /* HAVE_FTIME */
 #    ifdef HZ
-/*	napms - sleep for time milliseconds - uses times() */
-napms(time)
-int time;
+/*	ularn_napms - sleep for time milliseconds - uses times() */
+void ularn_napms(int time)
 {
 	long matchclock, times();
 	struct tms stats;
@@ -92,7 +89,7 @@ int time;
 		;
 }
 #    else
-napms(x) int x; {}
+ularn_napms(x) int x; {}
 #    endif /* HZ */
 #  endif /* HAVE_FTIME */
 #endif /* HAVE_SETITIMER */

@@ -26,7 +26,7 @@
  */
 static short w1[9],w1x[9],w1y[9];
 static int tmp1,tmp2,tmp3,tmp4,distance;
-movemonst()
+void movemonst()
 {
 	int i,j;
 
@@ -115,8 +115,7 @@ movemonst()
  */
 static int tmpitem,xl,xh,yl,yh;
 
-movemt(i,j)
-int i,j;
+void movemt(int i,int j)
 {
 	int k,m,z,tmp,xtmp,ytmp,monst;
 	int x;
@@ -294,8 +293,7 @@ out:
  *	Enter with the from coordinates in (x,y) and the destination coordinates
  *	in (xd,yd).
  */
-mmove(aa,bb,cc,dd)
-int aa,bb,cc,dd;
+void mmove(int aa,int bb,int cc,int dd)
 {
 	int tmp,it,i,x,flag;
 	char *who,*p;
@@ -481,8 +479,7 @@ int aa,bb,cc,dd;
 		show1cell(cc,dd);
 }
 
-teleportmonst (xx, yy, monst)
-int xx, yy, monst;
+void teleportmonst (int xx, int yy, int monst)
 {
 	int i, x,y,trys;
 

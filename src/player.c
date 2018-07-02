@@ -420,7 +420,7 @@ recalc ()
  *
  *	subroutine to ask if the player really wants to quit
  */
-quit ()
+void quit ()
 {
 	int i;
 
@@ -469,12 +469,12 @@ quit ()
 /*
  *	function to ask --more-- then the user must enter a space
  */
-more()
+void more()
 {
 	char c;
 
 	lprcat("\n  --- press ");
-	standout("space");
+	ularn_standout("space");
 	lprcat(" to continue --- ");
 	while ((c = getcharacter()) != ' ' && !isspace(c))
 		;
@@ -484,8 +484,7 @@ more()
  *	function to put something in the players inventory
  *	returns 0 if success, 1 if a failure
  */
-take (itm, arg)
-int itm, arg;
+int take (int itm, int arg)
 {
 	int i;
 	int limit;
@@ -580,8 +579,7 @@ int itm, arg;
  *
  *	k is index into iven list of object to drop
  */
-drop_object (k)
-int k;
+int drop_object (int k)
 {
 	int itm, pitflag=0;
 
@@ -631,8 +629,7 @@ int k;
 /*
  *	function to enchant armor player is currently wearing
  */
-enchantarmor (how)
-	int how;
+void enchantarmor (int how)
 {
 	int which;
 	int tmp;
@@ -682,8 +679,7 @@ enchantarmor (how)
 /*
  *	function to enchant a weapon presently being wielded
  */
-enchweapon (how)
-	int how;
+void enchweapon (int how)
 {
 	int tmp;
 
@@ -730,7 +726,7 @@ enchweapon (how)
  *	routine to tell if player can carry one more thing
  *	returns 1 if pockets are full, else 0
  */
-pocketfull ()
+int pocketfull ()
 {
 	int i,limit; 
 	if ((limit = 15+(c[LEVEL]>>1)) > IVENSIZE)
@@ -744,7 +740,7 @@ pocketfull ()
 /*
  *	function to return 1 if a monster is next to the player else returns 0
  */
-nearbymonst ()
+int nearbymonst ()
 {
 	int tmp,tmp2;
 
@@ -759,8 +755,7 @@ nearbymonst ()
  *	function to steal an item from the players pockets
  *	returns 1 if steals something else returns 0
  */
-stealsomething (x,y)
-int x,y;
+int stealsomething (int x,int y)
 {
 	int i,n=100;
 
@@ -789,7 +784,7 @@ int x,y;
 /*
  *	function to return 1 is player carrys nothing else return 0
  */
-emptyhanded ()
+int emptyhanded ()
 {
 	int i;
 
@@ -803,7 +798,7 @@ emptyhanded ()
 /*
  *	function to create a gem on a square near the player
  */
-creategem ()
+void creategem ()
 {
 	int i,j;
 
@@ -832,8 +827,7 @@ creategem ()
  *	function to change character levels as needed when dropping an object
  *	that affects these characteristics
  */
-adjustcvalues (itm, arg)
-int itm, arg;
+void adjustcvalues (int itm, int arg)
 {
 	int flag,i;
 
@@ -917,8 +911,7 @@ int itm, arg;
  *	function to read a string from token input "string"
  *	returns a pointer to the string
  */
-gettokstr (str)
-char *str;
+void gettokstr (char *str)
 {
 	int i,j;
 
@@ -944,7 +937,7 @@ char *str;
  *	returns 1 if entered correctly, 0 if not
  */
 
-getpassword ()
+int getpassword ()
 {
 	char gpwbuf[BUFSIZ];
 	char *fgets_ptr;
@@ -970,7 +963,7 @@ getpassword ()
  *	subroutine to get a yes or no response from the user
  *	returns y or n
  */
-getyn ()
+int getyn ()
 {
 	int i;
 
@@ -986,7 +979,7 @@ getyn ()
  *	function to calculate the pack weight of the player
  *	returns the number of pounds the player is carrying
  */
-packweight ()
+int packweight ()
 {
 	int i,j,k;
 
