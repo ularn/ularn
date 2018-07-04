@@ -73,7 +73,7 @@ $(PROGRAM): $(OBJS1)
 ##########################################################################
 install: $(PROGRAM)
 	if test ! -d $(DESTDIR)$(DATADIR) ; then mkdir -p $(DESTDIR)$(DATADIR) ; fi
-	-cp Umaps Ufortune Uhelp $(DESTDIR)$(DATADIR)
+	-cp ../data/Umaps ../data/Ufortune ../data/Uhelp $(DESTDIR)$(DATADIR)
 	-chmod 644 $(DESTDIR)$(DATADIR)/Umaps $(DESTDIR)$(DATADIR)/Ufortune \
 		$(DESTDIR)$(DATADIR)/Uhelp
 	if test ! -d $(DESTDIR)$(BINDIR) ; then mkdir -p $(DESTDIR)$(BINDIR) ; fi
