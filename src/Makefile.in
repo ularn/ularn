@@ -63,7 +63,7 @@ BUILDFILES= Makefile.in config.h.in
 all:	$(PROGRAM)
 
 $(PROGRAM): $(OBJS1)
-	$(CC) $(DEFS) -o $@ $(LDFLAGS) $(OBJS1)  $(SYS_LIBRARIES)
+	$(CC) $(DEFS) -o $@ $(OBJS1)  $(SYS_LIBRARIES) $(LDFLAGS)
 
 .c.o:	
 	$(CC) $(DEFS) -c $(CFLAGS) $<
