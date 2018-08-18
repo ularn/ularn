@@ -187,6 +187,9 @@ int savegame(char *fname)
 	bwrite(save_data,(char *)&FileSum, sizeof(FileSum));
 	flush_buffer(fname, save_data);
 
+	free(save_data->data);
+	free(save_data);
+
 	nosignal = 0;
 	if (do_fork)
 		exit(0);
