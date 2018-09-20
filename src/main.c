@@ -44,7 +44,6 @@ int argc;
 char *argv[];
 {
 	int i, hard;
-	char buf[BUFSIZ];
 	char *getenv(), *getlogin(), *ptr=0;
 	struct passwd *pwe,*getpwuid();
 	extern char *optarg;
@@ -90,11 +89,9 @@ noone:		    	fprintf(stderr,"Who *are* you?\n");
 	/* save file name in home directory */
 	sprintf(savefilename, "%s/Ularn.sav", ptr);
 
-	sprintf(buf, "%s/%s",ptr, optsfile); 	/* the .Ularnopts filename */
-	strcpy(optsfile, buf);
+	sprintf(optsfile, "%s/.Ularnopts", ptr); 	/* the .Ularnopts filename */
 
-	sprintf(buf, "%s/%s", ptr, ckpfile);	/* the checkpoint file */
-	strcpy(ckpfile, buf);
+	sprintf(ckpfile, "%s/Ularn.ckp", ptr);		/* the checkpoint file */
 
 	sprintf(scorefile, "%s/%s", libdir, SCORENAME); /* the Ularn scoreboard filename */
 

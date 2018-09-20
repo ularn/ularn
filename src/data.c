@@ -21,10 +21,10 @@ char larnlevels[MAXPATHLEN];
 char fortfile[MAXPATHLEN];
 
 /* the options file filename */
-char optsfile[MAXPATHLEN] =".Ularnopts";
+char optsfile[MAXPATHLEN];
 
 /* the checkpoint file filename */
-char ckpfile[MAXPATHLEN] ="Ularn.ckp";
+char ckpfile[MAXPATHLEN];
 
 /* the diagnostic filename	*/
 char diagfile[] ="Diagfile";		

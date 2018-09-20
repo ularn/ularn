@@ -57,6 +57,7 @@ void savelevel()
 {
 	Saved_Level *storage = saved_levels[level];
 
+	memset(storage, 0, sizeof(Saved_Level));
 	memcpy((char *)storage->hitp,  (char *)hitp,  sizeof(Short_Ary));
 	memcpy((char *)storage->mitem, (char *)mitem, sizeof(Mitem_Ary));
 	memcpy((char *)storage->item,  (char *)item,  sizeof(Char_Ary));
@@ -186,6 +187,9 @@ int savegame(char *fname)
 		/* file sum */
 	bwrite(save_data,(char *)&FileSum, sizeof(FileSum));
 	flush_buffer(fname, save_data);
+
+	free(save_data->data);
+	free(save_data);
 
 	nosignal = 0;
 	if (do_fork)
