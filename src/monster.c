@@ -82,6 +82,8 @@ struct isave {			/* used for alter reality spell */
 	short           arg;	/* the type of item or hitpoints of monster */
 };
 
+struct_mitem mitem[MAXX][MAXY];
+
 /*
  * Function to create a monster next to the player createmonster(monstno) 
  * nt monstno; 

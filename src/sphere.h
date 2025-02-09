@@ -7,4 +7,5 @@ struct sphere
 	short dir;		/* direction sphere is going in */
 	short lifetime;		/* duration of the sphere */
 };
-struct sphere *spheres;
+
+extern struct sphere *spheres;

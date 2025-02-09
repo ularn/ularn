@@ -49,7 +49,8 @@ typedef struct {
 	StolenItem it[6];
 } struct_mitem;
 
-struct_mitem mitem[MAXX][MAXY];
+extern struct_mitem mitem[][MAXY];
+
 #endif
 
 

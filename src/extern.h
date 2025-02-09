@@ -727,7 +727,7 @@ extern char nch[], ndgg[], ckpflag, monstlevel[];
 extern char nlpts[], nplt[],nsw[], mail,boldon, splev[];
 extern char potprob[], predostuff, scprob[], spelknow[], do_fork, sex;
 extern char spelweird[MAXMONST+8][SPNUM], wizard;
-extern char diroffx[],diroffy[],hitflag,hit2flag,hit3flag;
+extern int diroffx[],diroffy[],hitflag,hit2flag,hit3flag;
 extern char rmst, lasthx,lasthy,lastpx,lastpy;
 extern char ramboflag;
 
